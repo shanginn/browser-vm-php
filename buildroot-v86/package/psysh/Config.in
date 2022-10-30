@@ -1,0 +1,4 @@
+config BR2_PACKAGE_PSYSH
+	bool "psysh"
+	help
+	  A runtime developer console, interactive debugger and REPL for PHP https://psysh.org/
