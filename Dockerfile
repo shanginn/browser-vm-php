@@ -22,6 +22,7 @@ RUN echo 'root:${ROOT_PASSWORD}' | chpasswd; \
 # Install all Buildroot deps and prepare buildroot
 WORKDIR /root
 RUN DEBIAN_FRONTEND=noninteractive apt-get -q -y install \
+    locales \
     bc \
     build-essential \
     bzr \
@@ -35,12 +36,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -q -y install \
     libssl-dev \
     rsync; \
     wget -c http://buildroot.org/downloads/buildroot-${BUILD_ROOT_RELEASE}.tar.gz; \
-    tar axf buildroot-${BUILD_ROOT_RELEASE}.tar.gz;
+    tar axf buildroot-${BUILD_ROOT_RELEASE}.tar.gz; \
+    locale-gen en_US en_US.UTF-8 ru_RU.UTF-8;
 
 # configure the locales
-ENV LANG='C' \
-    LANGUAGE='en_US:en' \
-    LC_ALL='C' \
+ENV LANG='en_US.UTF-8' \
+    LANGUAGE='en_US.UTF-8' \
+    LC_ALL='en_US.UTF-8' \
     NOTVISIBLE="in users profile" \
     TERM=xterm
 
